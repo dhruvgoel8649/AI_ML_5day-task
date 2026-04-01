@@ -1,0 +1,20 @@
+# Model checkpoints and large binary files
+results/
+*.safetensors
+*.pt
+*.pth
+*.bin
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
