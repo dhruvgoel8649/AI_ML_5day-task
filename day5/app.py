@@ -9,7 +9,7 @@ app = FastAPI()
 classifier = pipeline("sentiment-analysis")
 emotion_model = pipeline(
     "text-classification",
-    model="j-hartmann/emotion-english-distilroberta-base",
+    model="joeddav/distilbert-base-uncased-go-emotions-student",
     top_k=1
 )
 
@@ -35,32 +35,38 @@ def detect_emotion(input: TextInput):
         "confidence": round(result["score"], 2)
     }
 
-# Batch test with 20+ emotions
+# Batch test with 28 emotions covered
 @app.get("/emotions/test")
 def test_emotions():
     texts = [
-        "I am so happy today!",
-        "I feel very sad and lonely.",
+        "I admire how hard she works every day.",
+        "That joke was absolutely hilarious!",
         "I am furious about what happened!",
-        "I'm scared of the dark.",
+        "This is so annoying, it keeps breaking.",
+        "I think you made the right decision.",
+        "I really care about your wellbeing.",
+        "I don't understand what you mean.",
+        "I wonder how black holes are formed.",
+        "I really want to travel the world someday.",
+        "I expected better, this is disappointing.",
+        "I don't think that was the right thing to do.",
         "I'm disgusted by that behavior.",
+        "I turned red when everyone looked at me.",
+        "I'm so excited about the concert tonight!",
+        "I'm scared of the dark.",
+        "I'm grateful for everything I have.",
+        "I still cry when I think about losing him.",
+        "I am so happy today!",
+        "I love spending time with my family.",
+        "I feel nervous about tomorrow.",
+        "I believe things will get better soon.",
+        "I'm so proud of what I achieved.",
+        "I just realized I had been wrong all along.",
+        "I'm relieved that it's finally over.",
+        "I regret the way I treated them.",
+        "I feel very sad and lonely.",
         "Wow, I didn't expect that at all!",
         "I feel completely neutral about this.",
-        "I love spending time with my family.",
-        "I hate when people lie to me.",
-        "I feel anxious about the exam tomorrow.",
-        "I'm so proud of what I achieved.",
-        "I feel ashamed of my mistake.",
-        "I'm excited about the trip!",
-        "I feel hopeless and lost.",
-        "I'm grateful for everything I have.",
-        "I feel jealous of their success.",
-        "I'm bored out of my mind.",
-        "I feel confused by the instructions.",
-        "I'm relieved that it's finally over.",
-        "I feel lonely even in a crowd.",
-        "I'm overwhelmed with all this work.",
-        "I feel content sitting here quietly.",
     ]
     results = []
     for text in texts:
